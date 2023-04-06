@@ -406,7 +406,7 @@
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <a class="dropdown-item" href="edit.php?post-id=19">Edit</a>
+                                                    <a class="dropdown-item" href="{{ url('admin/post/edit')}}/{{$post->id}}">Edit</a>
                                                     <a class="dropdown-item" href="#">Delete</a>
                                                     <a class="dropdown-item"
                                                         href="?action=mark-as-featured&post-id=19">Mark as featured</a>

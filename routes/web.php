@@ -18,5 +18,7 @@ use App\Http\Controllers\PostController;
 Route::get('/', [PostController::class, 'index']);
 
 Route::get('/admin/post/add', [PostController::class, 'add']);
+Route::get('/admin/post/edit/{id}', [PostController::class, 'edit']);
+Route::patch('admin/post/update/{id}', [PostController::class, 'update']);
 Route::post('/admin/post/store', [PostController::class, 'store']);
 Route::get('/admin/post', [PostController::class, 'adminIndex']);

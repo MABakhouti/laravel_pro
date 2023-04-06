@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Image;
 use Illuminate\Support\Facades\File;
+use App\Models\Categories;
 
 class PostController extends Controller
 {
@@ -19,6 +20,32 @@ class PostController extends Controller
     public function add()
     {
         return view('admin.posts.add');
+    }
+
+    public function edit($id)
+    {
+        $post = Post::find($id);
+        $categories = Categories::all();
+        return view('admin.posts.edit', ['post'=>$post, 'categories'=>$categories]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $post_image = "";
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $post_image = $image->getClientOriginalName();
+        }
+
+        $post = Post::find($id);
+        $post->post_title = $request->post_title;
+        $post->categories_id = $request->cat_id;
+        if(!empty($post_image)) $post->image = $post_image;
+        $post->content = $request->post_content;
+        $post->save();
+
+        $this->uploadImage($request, $post->id);
+        return back()->with(['message' => 'Post added successfully!']);
     }
 
     public function store(Request $request)
