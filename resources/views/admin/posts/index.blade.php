@@ -371,8 +371,11 @@
                                         <th scope="row">
                                             <div class="media align-items-center">
                                                 <a href="#" class="avatar  mr-3">
-                                                    <img width='60' height='48'
-                                                        src="../../post_images/post_19/alesia-kazantceva-VWcPlbHglYc-unsplash.jpg" />
+                                                    @if ($post->image)
+                                                        <img width='60' height='48' src='{{ asset("post_images/post_$post->id/$post->image")}}' />                                                        
+                                                    @else
+                                                        <img width='60' height='48' src='{{ asset("assets/frontend/images/posts/featured2.jpg")}}' />                                                        
+                                                    @endif
                                                 </a>
                                                 <div class="media-body">
                                                     <span class="name mb-0 text-sm">{{ $post->post_title }}</span>
