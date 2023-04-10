@@ -372,9 +372,9 @@
                                             <div class="media align-items-center">
                                                 <a href="#" class="avatar  mr-3">
                                                     @if ($post->image)
-                                                        <img width='60' height='48' src='{{ asset("post_images/post_$post->id/$post->image")}}' />                                                        
+                                                        <img width='60' height='48' src='{{ asset("post_images/post_$post->id/$post->image") }}' />                                                        
                                                     @else
-                                                        <img width='60' height='48' src='{{ asset("assets/frontend/images/posts/featured2.jpg")}}' />                                                        
+                                                        <img width='60' height='48' src='{{ asset('assets/frontend/images/posts/featured2.jpg') }}' />                                                        
                                                     @endif
                                                 </a>
                                                 <div class="media-body">
@@ -406,8 +406,8 @@
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <a class="dropdown-item" href="{{ url('admin/post/edit')}}/{{$post->id}}">Edit</a>
-                                                    <a class="dropdown-item" href="#">Delete</a>
+                                                    <a class="dropdown-item" href="{{ url('admin/post/edit') }}/{{ $post->id }}">Edit</a>
+                                                    <a onclick="showConfirmationBox({{$post->id}})" class="dropdown-item" href="#">Delete</a>
                                                     <a class="dropdown-item"
                                                         href="?action=mark-as-featured&post-id=19">Mark as featured</a>
                                                     <a class="dropdown-item"
@@ -416,8 +416,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                    </tr>
-                                    @endforeach
+                                    </tr> @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -487,6 +486,35 @@
     <!-- Core -->
     <script src="../../assets/backend/vendor/jquery/dist/jquery.min.js"></script>
     <script src="../../assets/backend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- https://sweetalert2.github.io/ -->
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
+    <style>
+        #swal2-title {
+            color: #5F74E3 !important;
+        }
+    </style>
+    <script>
+        function showConfirmationBox(postId) {
+            Swal.fire({
+                title: 'Are you sure you want to delete this post?',
+                showCancelButton: true,
+                confirmButtonText: 'yes',
+                background: '#fff',
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    // Swal.fire('Deleted!', '', 'success')
+                    window.location = "{{ url('admin/post/delete') }}/"+postId;
+                } else if (result.isDenied) {
+                    Swal.fire('Changes are not Delete', '', 'info')
+                }
+            })
+        }
+    </script>
+
     </body>
 
 </html>

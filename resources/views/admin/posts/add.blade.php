@@ -228,6 +228,7 @@
     <script>
           var editor = new FroalaEditor('#postContent',{heightMin: 350});
     </script>
+    
 </body>
 
 </html>

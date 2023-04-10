@@ -14,7 +14,8 @@ class PostController extends Controller
 
     public function index()
     {
-        return view('index');
+        $posts = Post::all();
+        return view('index', ['posts' => $posts]);
     }
 
     public function add()
@@ -82,6 +83,12 @@ class PostController extends Controller
     public function adminIndex(){
         $posts = Post::all();
         return view('admin.posts.index', ['posts'=>$posts]);
+    }
+
+    public function delete($id){
+        $post = Post::find($id);
+        $post->delete();
+        return back()->with(['message' => 'Post deleted successfully!']);
     }
 
 }

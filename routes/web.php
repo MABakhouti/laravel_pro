@@ -20,5 +20,6 @@ Route::get('/', [PostController::class, 'index']);
 Route::get('/admin/post/add', [PostController::class, 'add']);
 Route::get('/admin/post/edit/{id}', [PostController::class, 'edit']);
 Route::patch('admin/post/update/{id}', [PostController::class, 'update']);
+Route::get('admin/post/delete/{id}', [PostController::class, 'delete']);
 Route::post('/admin/post/store', [PostController::class, 'store']);
 Route::get('/admin/post', [PostController::class, 'adminIndex']);
