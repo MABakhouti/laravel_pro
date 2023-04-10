@@ -253,7 +253,7 @@
                                         <span class="post-format">
                                             <i class="icon-picture"></i>
                                         </span>
-                                        <a href="post-details.html">
+                                        <a href='{{ url("post/details/$post->id") }}'>
                                             <div class="inner">
                                                 @if ($post->image)
                                                     <img width='100%'  src='{{ asset("post_images/post_$post->id/$post->image")}}' />
@@ -273,7 +273,7 @@
                                             <li class="list-inline-item">{{ date('d F Y', strtotime($post->created_at)) }}</li>
                                         </ul>
                                         <h5 class="post-title mb-3 mt-3">
-                                            <a href="post-details.html">{{ $post->post_title }}</a>
+                                            <a href='{{ url("post/details/$post->id") }}'>{{ $post->post_title }}</a>
                                         </h5>
                                         <p class="excerpt mb-0">{{ $post->content }}</p>
                                     </div>
@@ -296,7 +296,7 @@
                                             </ul>
                                         </div>
                                         <div class="more-button float-end">
-                                            <a href="post-details.html"><span class="icon-options"></span></a>
+                                            <a href='{{ url("post/details/$post->id") }}'><span class="icon-options"></span></a>
                                         </div>
                                     </div>
                                 </div>

@@ -18,6 +18,11 @@ class PostController extends Controller
         return view('index', ['posts' => $posts]);
     }
 
+    public function show($id){
+        $post = Post::find($id);
+        return view('post-details', ['post'=>$post]);
+    }
+
     public function add()
     {
         return view('admin.posts.add');

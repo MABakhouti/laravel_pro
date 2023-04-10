@@ -168,7 +168,7 @@
                                 <div class="pl-lg-4 ">
                                     <div class="form-group ">
                                         <label class="form-control-label ">Post Content</label>
-                                        <textarea id="postContent" name="post_content" rows="19" class="form-control " placeholder="Enter post title"></textarea>
+                                        <textarea name="post_content" rows="19" class="form-control " placeholder="Enter post title"></textarea>
                                     </div>
                                 </div>
                                 <div class="pl-lg-4 ">
