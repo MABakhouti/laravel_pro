@@ -21,6 +21,7 @@ Route::get('/', [PostController::class, 'index']);
 
 Route::get('/post/details/{id}', [PostController::class, 'show']);
 Route::get('/post/categories/{categories_id}', [PostController::class, 'showByCategory']);
+Route::get('/post/markAsFeatured/{post_id}', [PostController::class, 'markAsFeatured']);
 
 Route::post('/comment/store', [CommentController::class, 'store']);
 Route::post('/comment/reply/add/', [ReplyController::class, 'addReply']);

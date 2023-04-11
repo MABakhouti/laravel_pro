@@ -16,7 +16,8 @@ class PostController extends Controller
     {
         $posts = Post::all();
         $categories = Categories::all();
-        return view('index', compact('posts', 'categories'));
+        $featured_posts = Post::where('is_featured', 1)->get();
+        return view('index', compact('posts', 'categories', 'featured_posts'));
     }
 
     public function show($id){
@@ -28,7 +29,8 @@ class PostController extends Controller
     public function showByCategory($categories_id){
         $posts = Post::where('categories_id', $categories_id)->get();
         $categories = Categories::all();
-        return view('index', compact('posts', 'categories'));
+        $featured_posts = Post::where('is_featured', 1)->get();
+        return view('index', compact('posts', 'categories', 'featured_posts'));
     }
 
     public function add()
@@ -103,6 +105,13 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->delete();
         return back()->with(['message' => 'Post deleted successfully!']);
+    }
+
+    public function markAsFeatured($post_id){
+        $post = Post::find($post_id);
+        $post->is_featured = 1;
+        $post->save();
+        return back()->with(['message' => 'Post marked as featured!']);
     }
 
 }

@@ -116,7 +116,8 @@
                             </li>
                             @foreach ($categories as $key => $category)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('post/categories') }}/{{ $category->id }}">{{ $category->name }}</a>
+                                    <a class="nav-link"
+                                        href="{{ url('post/categories') }}/{{ $category->id }}">{{ $category->name }}</a>
                                 </li>
                             @endforeach
 
@@ -134,95 +135,33 @@
 
             <div class="row post-carousel-featured post-carousel">
 
-                <!-- post -->
-                <div class="post featured-post-md">
-                    <div class="details clearfix">
-                        <a href="category.html" class="category-badge"> Vacation</a>
-                        <h4 class="post-title"><a href=''>Another movie title</a></h4>
-                        <ul class="meta list-inline mb-0">
-                            <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                            <li class="list-inline-item">2021-09-18 12:46:22</li>
-                        </ul>
-                    </div>
-                    <a href=''>
-                        <div class="thumb rounded">
-                            <div class="inner data-bg-image"
-                                data-bg-image="assets/frontend/images/posts/featured-md-4.jpg"></div>
+                @foreach ($featured_posts as $key => $featured_post)
+                    <!-- post -->
+                    <div class="post featured-post-md">
+                        <div class="details clearfix">
+                            <a href="category.html" class="category-badge"> {{ $featured_post->categories->name }}</a>
+                            <h4 class="post-title"><a href=''>{{ $featured_post->post_title }}</a></h4>
+                            <ul class="meta list-inline mb-0">
+                                <li class="list-inline-item"><a href="#">Katen Doe</a></li>
+                                <li class="list-inline-item">
+                                    {{ date('d F Y', strtotime($featured_post->created_at)) }}</li>
+                            </ul>
                         </div>
-                    </a>
-                </div>
-
-                <!-- post -->
-                <div class="post featured-post-md">
-                    <div class="details clearfix">
-                        <a href="category.html" class="category-badge"> Web Development</a>
-                        <h4 class="post-title"><a href=''>Test</a></h4>
-                        <ul class="meta list-inline mb-0">
-                            <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                            <li class="list-inline-item">2021-09-18 12:46:54</li>
-                        </ul>
+                        <a href=''>
+                            <div class="thumb rounded">
+                                @if ($featured_post->image)
+                                    <div class="inner data-bg-image"
+                                        data-bg-image='{{ asset("post_images/post_$featured_post->id/$featured_post->image") }}'>
+                                    </div>
+                                @else
+                                    <div class="inner data-bg-image"
+                                        data-bg-image='{{ asset('assets/frontend/images/posts/post-md-2.jpg') }}'>
+                                    </div>
+                                @endif
+                            </div>
+                        </a>
                     </div>
-                    <a href=''>
-                        <div class="thumb rounded">
-                            <div class="inner data-bg-image"
-                                data-bg-image="assets/frontend/images/posts/featured-md-4.jpg"></div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- post -->
-                <div class="post featured-post-md">
-                    <div class="details clearfix">
-                        <a href="category.html" class="category-badge"> Web Development</a>
-                        <h4 class="post-title"><a href=''>Oceans</a></h4>
-                        <ul class="meta list-inline mb-0">
-                            <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                            <li class="list-inline-item">2021-09-18 12:46:53</li>
-                        </ul>
-                    </div>
-                    <a href=''>
-                        <div class="thumb rounded">
-                            <div class="inner data-bg-image"
-                                data-bg-image="assets/frontend/images/posts/featured-md-4.jpg"></div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- post -->
-                <div class="post featured-post-md">
-                    <div class="details clearfix">
-                        <a href="category.html" class="category-badge"> Inspiration</a>
-                        <h4 class="post-title"><a href=''>This is test title</a></h4>
-                        <ul class="meta list-inline mb-0">
-                            <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                            <li class="list-inline-item">2021-09-18 12:46:52</li>
-                        </ul>
-                    </div>
-                    <a href='post-details.php.html'>
-                        <div class="thumb rounded">
-                            <div class="inner data-bg-image"
-                                data-bg-image="assets/frontend/images/posts/featured-md-4.jpg"></div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- post -->
-                <div class="post featured-post-md">
-                    <div class="details clearfix">
-                        <a href="category.html" class="category-badge"> Fashion</a>
-                        <h4 class="post-title"><a href='/post-details.html'>Cumque facere odio s</a></h4>
-                        <ul class="meta list-inline mb-0">
-                            <li class="list-inline-item"><a href="#">Katen Doe</a></li>
-                            <li class="list-inline-item">2021-09-18 12:46:51</li>
-                        </ul>
-                    </div>
-                    <a href=''>
-                        <div class="thumb rounded">
-                            <div class="inner data-bg-image"
-                                data-bg-image="assets/frontend/images/posts/featured-md-4.jpg"></div>
-                        </div>
-                    </a>
-                </div>
+                @endforeach
             </div>
         </section>
 

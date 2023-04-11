@@ -393,8 +393,13 @@
                                         </td>
                                         <td style="column-width: 50px;">
                                             <span class="badge badge-dot mr-4">
-                                                <i class="bg-success"></i>
-                                                <span class="status">Yes</span>
+                                                @if ($post->is_featured)
+                                                    <i class="bg-success"></i>
+                                                    <span class="status">Yes</span>
+                                                @else
+                                                    <i class="bg-danger"></i>
+                                                    <span class="status">No</span>
+                                                @endif
                                             </span>
                                         </td>
                                         <td style="column-width: 80px;">{{ $post->categories->name }}</td>
@@ -407,14 +412,14 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                     <a class="dropdown-item" href="{{ url('admin/post/edit') }}/{{ $post->id }}">Edit</a>
-                                                    <a onclick="showConfirmationBox({{$post->id}})" class="dropdown-item" href="#">Delete</a>
+                                                    <a onclick="showConfirmationBox({{ $post->id }})" class="dropdown-item" href="#">Delete</a>
                                                     <a class="dropdown-item"
-                                                        href="?action=mark-as-featured&post-id=19">Mark as featured</a>
+                                                        href="{{ url('post/markAsFeatured') }}/{{ $post->id }}">Mark as featured</a>
                                                     <a class="dropdown-item"
                                                         href="?action=mark-as-unfeatured&post-id=19">Mark as
                                                         unfeatured</a>
+                                                    </div>
                                                 </div>
-                                            </div>
                                         </td>
                                     </tr> @endforeach
                                 </tbody>
@@ -507,7 +512,7 @@
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                     // Swal.fire('Deleted!', '', 'success')
-                    window.location = "{{ url('admin/post/delete') }}/"+postId;
+                    window.location = "{{ url('admin/post/delete') }}/" + postId;
                 } else if (result.isDenied) {
                     Swal.fire('Changes are not Delete', '', 'info')
                 }
