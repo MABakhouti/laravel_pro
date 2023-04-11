@@ -25,6 +25,12 @@ class PostController extends Controller
         return view('post-details', compact('post', 'categories'));
     }
 
+    public function showByCategory($categories_id){
+        $posts = Post::where('categories_id', $categories_id)->get();
+        $categories = Categories::all();
+        return view('index', compact('posts', 'categories'));
+    }
+
     public function add()
     {
         $categories = Categories::all();

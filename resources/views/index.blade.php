@@ -116,7 +116,7 @@
                             </li>
                             @foreach ($categories as $key => $category)
                                 <li class="nav-item">
-                                    <a class="nav-link">{{ $category->name }}</a>
+                                    <a class="nav-link" href="{{ url('post/categories') }}/{{ $category->id }}">{{ $category->name }}</a>
                                 </li>
                             @endforeach
 
@@ -341,7 +341,7 @@
                                     <ul class="list">
                                         @foreach ($categories as $key => $category)
                                             <li><a
-                                                    href="#">{{ $category->name }}</a><span>{{ count($category->posts) }}</span>
+                                                    href="{{ url('post/categories') }}/{{ $category->id }}">{{ $category->name }}</a><span>{{ count($category->posts) }}</span>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -432,7 +432,7 @@
                     <a href="/">Home</a>
                 </li>
                 @foreach ($categories as $key => $category)
-                    <li><a href="category.html">{{ $category->name }}</a></li>
+                    <li><a href="{{ url('post/categories') }}/{{ $category->id }}">{{ $category->name }}</a></li>
                 @endforeach
             </ul>
         </nav>

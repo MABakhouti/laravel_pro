@@ -20,6 +20,7 @@ use App\Http\Controllers\ReplyController;
 Route::get('/', [PostController::class, 'index']);
 
 Route::get('/post/details/{id}', [PostController::class, 'show']);
+Route::get('/post/categories/{categories_id}', [PostController::class, 'showByCategory']);
 
 Route::post('/comment/store', [CommentController::class, 'store']);
 Route::post('/comment/reply/add/', [ReplyController::class, 'addReply']);
