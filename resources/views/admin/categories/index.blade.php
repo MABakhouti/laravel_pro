@@ -35,31 +35,58 @@
     <link rel="stylesheet" href="../../assets/backend/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
-<style>
-    .notification-bell-wrapper {
-        /* position:relative; */
-    }
-
-    .notification-circle {
-        height: 18px;
-        width: 18px;
-        border-radius: 50%;
-        background: linear-gradient(180deg, #fb6340 0, #f56036 100%) !important;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        bottom: 15px;
-        right: 25px;
-        z-index: 10;
-        font-size: 12px;
-    }
-</style>
-
 <body>
     <!-- Sidenav -->
-    <x-admin.sidebar />
+    <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+        <div class="scrollbar-inner">
+            <!-- Brand -->
+            <div class="sidenav-header  align-items-center">
+                <a class="navbar-brand" href="javascript:void(0)">
+                    <img src="../../assets/backend/img/brand/blue.png" class="navbar-brand-img" alt="...">
+                </a>
+            </div>
+            <div class="navbar-inner">
+                <!-- Collapse -->
+                <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                    <!-- Nav items -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../posts/dashboard.php">
+                                <i class="ni ni-tv-2 text-primary"></i>
+                                <span class="nav-link-text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../posts/">
+                                <i class="ni ni-bullet-list-67 text-default"></i>
+                                <span class="nav-link-text">Posts</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../categories/">
+                                <i class="ni fa fa-list-alt text-default"></i>
+                                <span class="nav-link-text">Categories</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../comments/">
+                                <i class="ni fa fa-comment text-default"></i>
+                                <span class="nav-link-text">Comments</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../login.php?action=logout">
+                                <i class="ni ni-key-25 text-info"></i>
+                                <span class="nav-link-text">Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Divider -->
+                    <hr class="my-3">
+                </div>
+            </div>
+        </div>
+    </nav>
     <!-- Main content -->
     <div class="main-content" id="panel">
         <!-- Topnav -->
@@ -101,10 +128,9 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link notification-bell-wrapper" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="notification-circle">4</span>
-                                <i class="ni ni-bell-55 notification-bell"></i>
+                            <a class="nav-link" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="ni ni-bell-55"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-xl  dropdown-menu-right  py-0 overflow-hidden">
                                 <!-- Dropdown header -->
@@ -119,7 +145,7 @@
                                             <div class="col-auto">
                                                 <!-- Avatar -->
                                                 <img alt="Image placeholder"
-                                                    src="../../assets/backend/img/theme/team-1.jpg"
+                                                    src="../assets/backend/img/theme/team-1.jpg"
                                                     class="avatar rounded-circle">
                                             </div>
                                             <div class="col ml--2">
@@ -140,7 +166,7 @@
                                             <div class="col-auto">
                                                 <!-- Avatar -->
                                                 <img alt="Image placeholder"
-                                                    src="../../assets/backend/img/theme/team-2.jpg"
+                                                    src="../assets/backend/img/theme/team-2.jpg"
                                                     class="avatar rounded-circle">
                                             </div>
                                             <div class="col ml--2">
@@ -161,7 +187,7 @@
                                             <div class="col-auto">
                                                 <!-- Avatar -->
                                                 <img alt="Image placeholder"
-                                                    src="../../assets/backend/img/theme/team-3.jpg"
+                                                    src="../assets/backend/img/theme/team-3.jpg"
                                                     class="avatar rounded-circle">
                                             </div>
                                             <div class="col ml--2">
@@ -182,7 +208,7 @@
                                             <div class="col-auto">
                                                 <!-- Avatar -->
                                                 <img alt="Image placeholder"
-                                                    src="../../assets/backend/img/theme/team-4.jpg"
+                                                    src="../assets/backend/img/theme/team-4.jpg"
                                                     class="avatar rounded-circle">
                                             </div>
                                             <div class="col ml--2">
@@ -203,7 +229,7 @@
                                             <div class="col-auto">
                                                 <!-- Avatar -->
                                                 <img alt="Image placeholder"
-                                                    src="../../assets/backend/img/theme/team-5.jpg"
+                                                    src="../assets/backend/img/theme/team-5.jpg"
                                                     class="avatar rounded-circle">
                                             </div>
                                             <div class="col ml--2">
@@ -223,6 +249,53 @@
                                 <!-- View all -->
                                 <a href="#!"
                                     class="dropdown-item text-center text-primary font-weight-bold py-3">View all</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="ni ni-ungroup"></i>
+                            </a>
+                            <div
+                                class="dropdown-menu dropdown-menu-lg dropdown-menu-dark bg-default  dropdown-menu-right ">
+                                <div class="row shortcuts px-4">
+                                    <a href="#!" class="col-4 shortcut-item">
+                                        <span class="shortcut-media avatar rounded-circle bg-gradient-red">
+                                            <i class="ni ni-calendar-grid-58"></i>
+                                        </span>
+                                        <small>Calendar</small>
+                                    </a>
+                                    <a href="#!" class="col-4 shortcut-item">
+                                        <span class="shortcut-media avatar rounded-circle bg-gradient-orange">
+                                            <i class="ni ni-email-83"></i>
+                                        </span>
+                                        <small>Email</small>
+                                    </a>
+                                    <a href="#!" class="col-4 shortcut-item">
+                                        <span class="shortcut-media avatar rounded-circle bg-gradient-info">
+                                            <i class="ni ni-credit-card"></i>
+                                        </span>
+                                        <small>Payments</small>
+                                    </a>
+                                    <a href="#!" class="col-4 shortcut-item">
+                                        <span class="shortcut-media avatar rounded-circle bg-gradient-green">
+                                            <i class="ni ni-books"></i>
+                                        </span>
+                                        <small>Reports</small>
+                                    </a>
+                                    <a href="#!" class="col-4 shortcut-item">
+                                        <span class="shortcut-media avatar rounded-circle bg-gradient-purple">
+                                            <i class="ni ni-pin-3"></i>
+                                        </span>
+                                        <small>Maps</small>
+                                    </a>
+                                    <a href="#!" class="col-4 shortcut-item">
+                                        <span class="shortcut-media avatar rounded-circle bg-gradient-yellow">
+                                            <i class="ni ni-basket"></i>
+                                        </span>
+                                        <small>Shop</small>
+                                    </a>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -276,19 +349,23 @@
             <div class="container-fluid">
                 <div class="header-body">
                     <div class="row align-items-center py-4">
-                        <div class="col-lg-6 col-7">
-                            <h6 class="h2 text-white d-inline-block mb-0">Posts</h6>
-                            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                                    <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a>
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Admin</li>
-                                    <li class="breadcrumb-item active" aria-current="page">Posts</li>
-                                </ol>
-                            </nav>
-                        </div>
-                        <div class="col-lg-6 col-5 text-right">
-                            <a href="add.php" class="btn btn-sm btn-neutral">Add New</a>
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-8">
+                                    <h6 class="h2 text-white d-inline-block mb-0">Posts</h6>
+                                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                                            <li class="breadcrumb-item"><a href="#"><i
+                                                        class="fas fa-home"></i></a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">Admin</li>
+                                            <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                                <div class="col-4 text-right justify-content-center mt-3">
+                                    <a href="add.php" class="btn btn-sm btn-neutral">Add New</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -297,65 +374,28 @@
         <!-- Page content -->
         <div class="container-fluid mt--6">
             <div class="row">
-                <div class="col">
+                <div class="col-8">
                     <div class="card">
                         <!-- Card header -->
                         <div class="card-header border-0">
-                            <h3 class="mb-0">Posts</h3>
+                            <h3 class="mb-0">Categories</h3>
                         </div>
                         <!-- Light table -->
                         <div class="table-responsive">
                             <table class="table align-items-center table-flush">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="sort" data-sort="name">Post Title</th>
-                                        <th scope="col" class="sort" data-sort="budget">Post content</th>
-                                        <th scope="col" class="sort" data-sort="Comments">Comments</th>
-                                        <th scope="col" class="sort" data-sort="Comments">Featured</th>
-                                        <th scope="col" class="sort" data-sort="Status">Category</th>
+                                        <th scope="col" class="sort" data-sort="name">Category Name</th>
                                         <th scope="col" class="sort" data-sort="completion">Action</th>
-                                        <th scope="col"></th>
                                     </tr>
                                 </thead>
                                 <tbody class="list">
-                                    @foreach ($posts as $key => $post)
+                                    @foreach ($categories as $key => $category)
                                     <tr>
-                                        <th scope="row">
-                                            <div class="media align-items-center">
-                                                <a href="#" class="avatar  mr-3">
-                                                    @if ($post->image)
-                                                        <img width='60' height='48' src='{{ asset("post_images/post_$post->id/$post->image") }}' />                                                        
-                                                    @else
-                                                        <img width='60' height='48' src='{{ asset('assets/frontend/images/posts/featured2.jpg') }}' />                                                        
-                                                    @endif
-                                                </a>
-                                                <div class="media-body">
-                                                    <span class="name mb-0 text-sm">{{ $post->post_title }}</span>
-                                                </div>
-                                            </div>
-                                        </th>
                                         <td class="budget">
-                                            {{ $post->content }}
+                                            {{ $category->name }}
                                         </td>
                                         <td>
-                                            <span class="badge badge-dot mr-4">
-                                                <i class=""></i>
-                                                <span class="status">0</span>
-                                            </span>
-                                        </td>
-                                        <td style="column-width: 50px;">
-                                            <span class="badge badge-dot mr-4">
-                                                @if ($post->is_featured)
-                                                    <i class="bg-success"></i>
-                                                    <span class="status">Yes</span>
-                                                @else
-                                                    <i class="bg-danger"></i>
-                                                    <span class="status">No</span>
-                                                @endif
-                                            </span>
-                                        </td>
-                                        <td style="column-width: 80px;">{{ $post->categories->name }}</td>
-                                        <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#"
                                                     role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -363,15 +403,10 @@
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <a class="dropdown-item" href="{{ url('admin/post/edit') }}/{{ $post->id }}">Edit</a>
-                                                    <a onclick="showConfirmationBox({{ $post->id }})" class="dropdown-item" href="#">Delete</a>
-                                                    <a class="dropdown-item"
-                                                        href="{{ url('post/markAsFeatured') }}/{{ $post->id }}">Mark as featured</a>
-                                                    <a class="dropdown-item"
-                                                        href="?action=mark-as-unfeatured&post-id=19">Mark as
-                                                        unfeatured</a>
-                                                    </div>
+                                                    <a class="dropdown-item" href="{{ url('admin/category/edit') }}/{{ $category->id }}">Edit</a>
+                                                    <a class="dropdown-item" href="#">Delete</a>
                                                 </div>
+                                            </div>
                                         </td>
                                     </tr> @endforeach
                                 </tbody>
@@ -441,37 +476,8 @@
     </div>
     <!-- Argon Scripts -->
     <!-- Core -->
-    <script src="../../assets/backend/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="../../assets/backend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- https://sweetalert2.github.io/ -->
-    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-
-    <style>
-        #swal2-title {
-            color: #5F74E3 !important;
-        }
-    </style>
-    <script>
-        function showConfirmationBox(postId) {
-            Swal.fire({
-                title: 'Are you sure you want to delete this post?',
-                showCancelButton: true,
-                confirmButtonText: 'yes',
-                background: '#fff',
-            }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                    // Swal.fire('Deleted!', '', 'success')
-                    window.location = "{{ url('admin/post/delete') }}/" + postId;
-                } else if (result.isDenied) {
-                    Swal.fire('Changes are not Delete', '', 'info')
-                }
-            })
-        }
-    </script>
-
+    <script src="../assets/backend/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/backend/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 
 </html>
