@@ -15,17 +15,20 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('index', ['posts' => $posts]);
+        $categories = Categories::all();
+        return view('index', compact('posts', 'categories'));
     }
 
     public function show($id){
         $post = Post::find($id);
-        return view('post-details', ['post'=>$post]);
+        $categories = Categories::all();
+        return view('post-details', compact('post', 'categories'));
     }
 
     public function add()
     {
-        return view('admin.posts.add');
+        $categories = Categories::all();
+        return view('admin.posts.add', compact('categories'));
     }
 
     public function edit($id)

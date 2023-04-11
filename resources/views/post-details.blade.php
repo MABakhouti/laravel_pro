@@ -76,15 +76,11 @@
                             <li class="nav-item dropdown active">
                                 <a class="nav-link dropdown-toggle" href="/">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="category.html">Web Development</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="category.html">Fashion</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="category.html">Inspiration</a>
-                            </li>
+                            @foreach ($categories as $key => $category)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="category.html">{{ $category->name}}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
 
@@ -136,7 +132,7 @@
                                 <ul class="meta list-inline mb-0">
                                     <li class="list-inline-item"><a href="#">{{ $post->categories->name }}</a>
                                     </li>
-                                    <li class="list-inline-item">{{ date('d F Y', strtotime($post->created_at)) }}
+                                    <li class="list-inline-item">{{ $post->created_at->diffForHumans() }}
                                     </li>
                                 </ul>
                             </div>
@@ -219,7 +215,8 @@
                                                     alt="John Doe">
                                             </div>
                                             <div class="details">
-                                                <h4 class="name"><a href="#">{{ $reply->visitor_name }}</a></h4>
+                                                <h4 class="name"><a href="#">{{ $reply->visitor_name }}</a>
+                                                </h4>
                                                 <span class="date">{{ $reply->created_at->diffForHumans() }}</span>
                                                 <p>{{ $reply->body }}</p>
                                                 {{-- <a href="#" data-comment-id="3"
@@ -299,9 +296,9 @@
                             <!-- widget about -->
                             <div class="widget rounded">
                                 <div class="widget-about data-bg-image text-center"
-                                    data-bg-image="assets/frontend/images/map-bg.png">
-                                    <img width="118" height="26" src="assets/brand/blue.png" alt="logo"
-                                        class="mb-4" />
+                                    data-bg-image="{{ asset('assets/frontend/images/map-bg.png') }}">
+                                    <img width="118" height="26" src="{{ asset('assets/brand/blue.png') }}"
+                                        alt="logo" class="mb-4" />
                                     <p class="mb-4">Hello, We’re content writer who is fascinated by content fashion,
                                         celebrity and lifestyle. We helps clients bring the right content to the right
                                         people.</p>
@@ -322,35 +319,6 @@
                                 </div>
                             </div>
 
-                            <!-- widget popular posts -->
-                            <div class="widget rounded">
-                                <div class="widget-header text-center">
-                                    <h3 class="widget-title">Popular Posts</h3>
-                                    <img src="assets/frontend/images/wave.svg" class="wave" alt="wave" />
-                                </div>
-                                <div class="widget-content">
-                                    <!-- post -->
-                                    <div class="post post-list-sm circle">
-                                        <div class="thumb circle">
-                                            <span class="number">1</span>
-                                            <a href="blog-single.html">
-                                                <div class="inner">
-                                                    <img src="assets/frontend/images/posts/tabs-1.jpg"
-                                                        alt="post-title" />
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="details clearfix">
-                                            <h6 class="post-title my-0"><a href="blog-single.html">This is a test
-                                                    tile</a></h6>
-                                            <ul class="meta list-inline mt-1 mb-0">
-                                                <li class="list-inline-item">2021-09-18 12:46:57</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- widget categories -->
                             <div class="widget rounded">
                                 <div class="widget-header text-center">
@@ -358,11 +326,9 @@
                                 </div>
                                 <div class="widget-content">
                                     <ul class="list">
-                                        <li><a href="#">Web Development</a><span>10</span></li>
-                                        <li><a href="#">Fashion</a><span>5</span></li>
-                                        <li><a href="#">Inspiration</a><span>3</span></li>
-                                        <li><a href="#">Vacation</a><span>1</span></li>
-                                        <li><a href="#">Worship</a><span>0</span></li>
+                                        @foreach ($categories as $key => $category)
+                                            <li><a href="#">{{ $category->name }}</a><span>{{ count($category->posts) }}</span></li>
+                                        @endforeach
                                     </ul>
                                 </div>
 
@@ -468,9 +434,6 @@
                             <input type="hidden" name="comment_id" value="{{ $comment->id }}" id="commentId" />
 
                             <div class="messages"></div>
-
-                            {{-- <input type="hidden" name="comment_id" value="{{ $comment->id }}" /> --}}
-
                             <div class="row">
 
                                 <div class="column col-md-12">

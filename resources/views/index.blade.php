@@ -114,21 +114,12 @@
                             <li class="nav-item dropdown active">
                                 <a class="nav-link dropdown-toggle" href="/">Home</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Web Development</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Fashion</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Inspiration</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Vacation</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link">Worship</a>
-                            </li>
+                            @foreach ($categories as $key => $category)
+                                <li class="nav-item">
+                                    <a class="nav-link">{{ $category->name }}</a>
+                                </li>
+                            @endforeach
+
                             <li class="nav-item">
                                 <a class="nav-link" href="contact.html">Contact</a>
                             </li>
@@ -244,63 +235,69 @@
                     <div class="col-lg-8">
                         <div class="row gy-4">
                             @foreach ($posts as $key => $post)
-                            <div class="col-sm-6">
-                                <!-- post -->
-                                <div class="post post-grid rounded bordered" data-aos="fade-up" data-aos-offset="220"
-                                    data-aos-duration="1000">
-                                    <div class="thumb top-rounded">
-                                        <a href="category.html" class="category-badge position-absolute">{{ $post->categories->name }}</a>
-                                        <span class="post-format">
-                                            <i class="icon-picture"></i>
-                                        </span>
-                                        <a href='{{ url("post/details/$post->id") }}'>
-                                            <div class="inner">
-                                                @if ($post->image)
-                                                    <img width='100%'  src='{{ asset("post_images/post_$post->id/$post->image")}}' />
-                                                @else
-                                                    <img width='100%'  src='{{ asset("assets/frontend/images/posts/post-md-2.jpg")}}' />
-                                                @endif
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="details">
-                                        <ul class="meta list-inline mb-0">
-                                            <li class="list-inline-item">
-                                                <a href="#"><img
-                                                        src="assets/frontend/images/other/author-sm.png"
-                                                        class="author" alt="author" />Katen Doe</a>
-                                            </li>
-                                            <li class="list-inline-item">{{ date('d F Y', strtotime($post->created_at)) }}</li>
-                                        </ul>
-                                        <h5 class="post-title mb-3 mt-3">
-                                            <a href='{{ url("post/details/$post->id") }}'>{{ $post->post_title }}</a>
-                                        </h5>
-                                        <p class="excerpt mb-0">{{ $post->content }}</p>
-                                    </div>
-                                    <div class="post-bottom clearfix d-flex align-items-center">
-                                        <div class="social-share me-auto">
-                                            <button class="toggle-button icon-share"></button>
-                                            <ul class="icons list-unstyled list-inline mb-0">
-                                                <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-facebook-f"></i></a></li>
-                                                <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-twitter"></i></a></li>
-                                                <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-linkedin-in"></i></a></li>
-                                                <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-pinterest"></i></a></li>
-                                                <li class="list-inline-item"><a href="#"><i
-                                                            class="fab fa-telegram-plane"></i></a></li>
-                                                <li class="list-inline-item"><a href="#"><i
-                                                            class="far fa-envelope"></i></a></li>
-                                            </ul>
+                                <div class="col-sm-6">
+                                    <!-- post -->
+                                    <div class="post post-grid rounded bordered" data-aos="fade-up"
+                                        data-aos-offset="220" data-aos-duration="1000">
+                                        <div class="thumb top-rounded">
+                                            <a href="category.html"
+                                                class="category-badge position-absolute">{{ $post->categories->name }}</a>
+                                            <span class="post-format">
+                                                <i class="icon-picture"></i>
+                                            </span>
+                                            <a href='{{ url("post/details/$post->id") }}'>
+                                                <div class="inner">
+                                                    @if ($post->image)
+                                                        <img width='100%'
+                                                            src='{{ asset("post_images/post_$post->id/$post->image") }}' />
+                                                    @else
+                                                        <img width='100%'
+                                                            src='{{ asset('assets/frontend/images/posts/post-md-2.jpg') }}' />
+                                                    @endif
+                                                </div>
+                                            </a>
                                         </div>
-                                        <div class="more-button float-end">
-                                            <a href='{{ url("post/details/$post->id") }}'><span class="icon-options"></span></a>
+                                        <div class="details">
+                                            <ul class="meta list-inline mb-0">
+                                                <li class="list-inline-item">
+                                                    <a href="#"><img
+                                                            src="assets/frontend/images/other/author-sm.png"
+                                                            class="author" alt="author" />Katen Doe</a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    {{ date('d F Y', strtotime($post->created_at)) }}</li>
+                                            </ul>
+                                            <h5 class="post-title mb-3 mt-3">
+                                                <a
+                                                    href='{{ url("post/details/$post->id") }}'>{{ $post->post_title }}</a>
+                                            </h5>
+                                            <p class="excerpt mb-0">{{ $post->content }}</p>
+                                        </div>
+                                        <div class="post-bottom clearfix d-flex align-items-center">
+                                            <div class="social-share me-auto">
+                                                <button class="toggle-button icon-share"></button>
+                                                <ul class="icons list-unstyled list-inline mb-0">
+                                                    <li class="list-inline-item"><a href="#"><i
+                                                                class="fab fa-facebook-f"></i></a></li>
+                                                    <li class="list-inline-item"><a href="#"><i
+                                                                class="fab fa-twitter"></i></a></li>
+                                                    <li class="list-inline-item"><a href="#"><i
+                                                                class="fab fa-linkedin-in"></i></a></li>
+                                                    <li class="list-inline-item"><a href="#"><i
+                                                                class="fab fa-pinterest"></i></a></li>
+                                                    <li class="list-inline-item"><a href="#"><i
+                                                                class="fab fa-telegram-plane"></i></a></li>
+                                                    <li class="list-inline-item"><a href="#"><i
+                                                                class="far fa-envelope"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="more-button float-end">
+                                                <a href='{{ url("post/details/$post->id") }}'><span
+                                                        class="icon-options"></span></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -342,11 +339,11 @@
                                 <div class="widget-content">
 
                                     <ul class="list">
-                                        <li><a href="?filter=1">Web Development</a><span>(10)</span></li>
-                                        <li><a href="?filter=2">Fashion</a><span>(5)</span></li>
-                                        <li><a href="?filter=3">Inspiration</a><span>(3)</span></li>
-                                        <li><a href="?filter=4">Vacation</a><span>(1)</span></li>
-                                        <li><a href="?filter=5">Worship</a><span>(0)</span></li>
+                                        @foreach ($categories as $key => $category)
+                                            <li><a
+                                                    href="#">{{ $category->name }}</a><span>{{ count($category->posts) }}</span>
+                                            </li>
+                                        @endforeach
                                     </ul>
 
                                 </div>
@@ -434,11 +431,9 @@
                 <li class="active">
                     <a href="/">Home</a>
                 </li>
-                <li><a href="category.html">Web Development</a></li>
-                <li><a href="category.html">Fashion</a></li>
-                <li><a href="category.html">Inspiration</a></li>
-                <li><a href="category.html">Vacation</a></li>
-                <li><a href="category.html">Worship</a></li>
+                @foreach ($categories as $key => $category)
+                    <li><a href="category.html">{{ $category->name }}</a></li>
+                @endforeach
             </ul>
         </nav>
 
