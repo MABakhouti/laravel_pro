@@ -68,7 +68,7 @@
                 <div class="container-xl">
                     <!-- site logo -->
                     <a class="navbar-brand" href="index.html"><img width="118" height="26"
-                            src="assets/brand/blue.png" alt="logo" /></a>
+                            src="{{ asset('assets/brand/blue.png') }}" alt="logo" /></a>
 
                     <div class="collapse navbar-collapse">
                         <!-- menus -->
@@ -136,7 +136,8 @@
                                 <ul class="meta list-inline mb-0">
                                     <li class="list-inline-item"><a href="#">{{ $post->categories->name }}</a>
                                     </li>
-                                    <li class="list-inline-item">{{ date('d F Y', strtotime($post->created_at)) }}</li>
+                                    <li class="list-inline-item">{{ date('d F Y', strtotime($post->created_at)) }}
+                                    </li>
                                 </ul>
                             </div>
                             <!-- featured image -->
@@ -186,79 +187,47 @@
 
                         <!-- section header -->
                         <div class="section-header">
-                            <h3 class="section-title">Comments (2)</h3>
-                            <img src="assets/frontend/images/wave.svg" class="wave" alt="wave" />
+                            <h3 class="section-title">Comments ({{ count($post->comments) }})</h3>
+                            <img src="{{ asset('assets/frontend/images/wave.svg') }}" class="wave"
+                                alt="wave" />
                         </div>
 
                         <!-- post comments -->
                         <div class="comments bordered padding-30 rounded">
-                            <ul class="comments">
-                                <!-- comment item -->
-                                <li class="comment rounded">
-                                    <div class="thumb">
-                                        <img src="assets/frontend/images/other/comment-1.png" alt="John Doe" />
-                                    </div>
-                                    <div class="details">
-                                        <h4 class="name"><a href="#">testwebsite</a></h4>
-                                        <span class="date">19 February 2022</span>
-                                        <p>Ut voluptas esse sed vero repudiandae ut fugit reprehenderit. Et voluptatem
-                                            alias et dolorem quasi est sint necessitatibus ut rerum accusamus! Qui ipsum
-                                            minima ut architecto labore aut inventore similique! Sed quia fugiat ut
-                                            eveniet voluptas</p>
-                                        <a href="#" data-comment-id="3" class="btn btn-default btn-sm"
-                                            data-bs-toggle="modal" data-bs-target="#replyModal">Reply</a>
-                                    </div>
-                                </li>
-
-
-                                <li class="comment child rounded mb-15" style="margin-bottom: 30px">
-                                    <div class="thumb">
-                                        <img src="assets/frontend/images/other/comment-1.png" alt="John Doe">
-                                    </div>
-                                    <div class="details">
-                                        <h4 class="name"><a href="#">Taya</a></h4>
-                                        <span class="date">23 March 2022</span>
-                                        <p>Vel iure delectus At nihil natus qui eaque repudiandae aut error recusandae.
-                                            Eum nulla aut animi aliquam ut voluptates labore.</p>
-                                        <a href="#" data-comment-id="3"
-                                            class="btn btn-default btn-sm">Reply</a>
-                                    </div>
-                                </li>
-                                <li class="comment child rounded mb-15" style="margin-bottom: 30px">
-                                    <div class="thumb">
-                                        <img src="assets/frontend/images/other/comment-1.png" alt="John Doe">
-                                    </div>
-                                    <div class="details">
-                                        <h4 class="name"><a href="#">Timna</a></h4>
-                                        <span class="date">23 March 2022</span>
-                                        <p>ed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim
-                                            veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi
-                                            ut aliquid ex ea commodi consequatur. Quis aute iure reprehenderit in
-                                            voluptate velit esse cillum </p>
-                                        <a href="#" data-comment-id="3"
-                                            class="btn btn-default btn-sm">Reply</a>
-                                    </div>
-                                </li>
-
-                            </ul>
-                            <ul class="comments">
-                                <!-- comment item -->
-                                <li class="comment rounded">
-                                    <div class="thumb">
-                                        <img src="assets/frontend/images/other/comment-1.png" alt="John Doe" />
-                                    </div>
-                                    <div class="details">
-                                        <h4 class="name"><a href="#">testwebsite</a></h4>
-                                        <span class="date">22 March 2022</span>
-                                        <p>Ut corrupti quia ea corporis quasi qui dolore officia a fugit veniam non quam
-                                            incidunt sed saepe numquam.</p>
-                                        <a href="#" data-comment-id="4" class="btn btn-default btn-sm"
-                                            data-bs-toggle="modal" data-bs-target="#replyModal">Reply</a>
-                                    </div>
-                                </li>
-
-
-
+                            @foreach ($post->comments as $key => $comment)
+                                <ul class="comments">
+                                    <!-- comment item -->
+                                    <li class="comment rounded">
+                                        <div class="thumb">
+                                            <img src="{{ asset('assets/frontend/images/other/comment-1.png') }}"
+                                                alt="John Doe" />
+                                        </div>
+                                        <div class="details">
+                                            <h4 class="name"><a href="#">{{ $comment->visitor_name }}</a>
+                                            </h4>
+                                            <span class="date">{{ $comment->created_at->diffForHumans() }}</span>
+                                            <p>{{ $comment->body }}</p>
+                                            <a href="#" onclick="getElementById({{ $comment->id }})"
+                                                data-comment-id="3" class="btn btn-default btn-sm"
+                                                data-bs-toggle="modal" data-bs-target="#replyModal">Reply</a>
+                                        </div>
+                                    </li>
+                                    @foreach ($comment->replies as $key => $reply)
+                                        <li class="comment child rounded mb-15" style="margin-bottom: 30px">
+                                            <div class="thumb">
+                                                <img src="{{ asset('assets/frontend/images/other/comment-1.png') }}"
+                                                    alt="John Doe">
+                                            </div>
+                                            <div class="details">
+                                                <h4 class="name"><a href="#">{{ $reply->visitor_name }}</a></h4>
+                                                <span class="date">{{ $reply->created_at->diffForHumans() }}</span>
+                                                <p>{{ $reply->body }}</p>
+                                                {{-- <a href="#" data-comment-id="3"
+                                                class="btn btn-default btn-sm">Reply</a> --}}
+                                            </div>
+                                        </li>
+                                    @endforeach
+                            @endforeach
                             </ul>
                         </div>
 
@@ -268,24 +237,24 @@
                         <!-- section header -->
                         <div class="section-header">
                             <h3 class="section-title">Leave Comment</h3>
-                            <img src="assets/frontend/images/wave.svg" class="wave" alt="wave" />
+                            <img src="{{ asset('assets/frontend/images/wave.svg') }}" class="wave"
+                                alt="wave" />
                         </div>
                         <!-- comment form -->
                         <div class="comment-form rounded bordered padding-30">
 
-                            <form id="comment-form" class="comment-form" method="post">
-
+                            <form id="comment-form" action="{{ url('comment/store') }}" class="comment-form"
+                                method="post">
+                                @csrf
                                 <div class="messages"></div>
-
-                                <input type="hidden" name="post_id" value="16" />
-
+                                <input type="hidden" name="post_id" value="{{ $post->id }}" />
                                 <div class="row">
 
                                     <div class="column col-md-12">
                                         <!-- Comment textarea -->
                                         <div class="form-group">
-                                            <textarea name="comment_body" id="comment_body" class="form-control" rows="4"
-                                                placeholder="Your comment here..." required="required"></textarea>
+                                            <textarea name="body" id="comment_body" class="form-control" rows="4" placeholder="Your comment here..."
+                                                required="required"></textarea>
                                         </div>
                                     </div>
 
@@ -298,18 +267,18 @@
                                     </div>
 
                                     <div class="column col-md-6">
-                                        <!-- Name input -->
+                                        <!-- Website input -->
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="visitor_name"
+                                            <input type="text" class="form-control" name="visitor_website"
                                                 id="visitor_website" placeholder="Website" required="required">
                                         </div>
                                     </div>
 
                                     <div class="column col-md-12">
-                                        <!-- Email input -->
+                                        <!-- Name input -->
                                         <div class="form-group">
                                             <input type="text" class="form-control" id="InputName"
-                                                name="com_visitor_name" placeholder="Your name" required="required">
+                                                name="visitor_name" placeholder="Your name" required="required">
                                         </div>
                                     </div>
 
@@ -490,24 +459,25 @@
     <!-- Modal -->
     <div class="modal fade" id="replyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <!-- comment form -->
-                    <div class="comment-form rounded bordered padding-30">
-
-                        <form id="comment-form" class="comment-form" method="post">
+            <form action="{{ url('comment/reply/add') }}" id="comment-form" class="comment-form" method="post">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <!-- reply form -->
+                        <div class="comment-form rounded bordered padding-30">
+                            <input type="hidden" name="comment_id" value="{{ $comment->id }}" id="commentId" />
 
                             <div class="messages"></div>
 
-                            <input type="hidden" name="post_id" value="16" />
+                            {{-- <input type="hidden" name="comment_id" value="{{ $comment->id }}" /> --}}
 
                             <div class="row">
 
                                 <div class="column col-md-12">
                                     <!-- Comment textarea -->
                                     <div class="form-group">
-                                        <textarea name="comment_body" id="comment_body" class="form-control" rows="4"
-                                            placeholder="Your comment here..." required="required"></textarea>
+                                        <textarea name="body" id="comment_body" class="form-control" rows="4" placeholder="Your comment here..."
+                                            required="required"></textarea>
                                     </div>
                                 </div>
 
@@ -520,31 +490,31 @@
                                 </div>
 
                                 <div class="column col-md-6">
-                                    <!-- Name input -->
+                                    <!-- Website input -->
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="visitor_name"
+                                        <input type="text" class="form-control" name="visitor_website"
                                             id="visitor_website" placeholder="Website" required="required">
                                     </div>
                                 </div>
 
                                 <div class="column col-md-12">
-                                    <!-- Email input -->
+                                    <!-- Name input -->
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="InputName"
-                                            name="com_visitor_name" placeholder="Your name" required="required">
+                                            name="visitor_name" placeholder="Your name" required="required">
                                     </div>
                                 </div>
 
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn  btn-default">Save changes</button>
-                </div>
-            </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn  btn-default">Save changes</button>
+                    </div>
+            </form>
         </div>
+    </div>
     </div>
 
 
@@ -558,12 +528,19 @@
     <script src="{{ asset('assets/frontend/js/jquery.sticky-sidebar.min.js') }}"></script>
     <script src="{{ asset('assets/frontend/js/custom.js') }}"></script>
 
-    <script>
+    {{-- <script>
         var x = document.getElementById("snackbar");
         x.className = "show";
         setTimeout(function() {
             x.className = x.className.replace("show", "");
         }, 4000);
+    </script> --}}
+
+    <script>
+        function getElementById(commentId) {
+            //localStorage.setItem('commentId', commentId);
+            document.getElementById(commentId).value = commentId;
+        }
     </script>
 
 

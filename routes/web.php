@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,9 @@ use App\Http\Controllers\PostController;
 Route::get('/', [PostController::class, 'index']);
 
 Route::get('/post/details/{id}', [PostController::class, 'show']);
+
+Route::post('/comment/store', [CommentController::class, 'store']);
+Route::post('/comment/reply/add/', [ReplyController::class, 'addReply']);
 
 Route::get('/admin/post/add', [PostController::class, 'add']);
 Route::get('/admin/post/edit/{id}', [PostController::class, 'edit']);
