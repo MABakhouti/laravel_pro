@@ -363,7 +363,7 @@
                                     </nav>
                                 </div>
                                 <div class="col-4 text-right justify-content-center mt-3">
-                                    <a href="add.php" class="btn btn-sm btn-neutral">Add New</a>
+                                    <a href="{{ url('admin/category/add') }}" class="btn btn-sm btn-neutral">Add New</a>
                                 </div>
                             </div>
                         </div>

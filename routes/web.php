@@ -41,3 +41,4 @@ Route::get('/admin/categories', [CategoryController::class, 'index']);
 Route::get('/admin/category/edit/{id}', [CategoryController::class, 'edit']);
 Route::patch('admin/category/update/{id}', [CategoryController::class, 'update']);
 Route::get('/admin/category/add', [CategoryController::class, 'add']);
+Route::post('/admin/category/store', [CategoryController::class, 'store']);

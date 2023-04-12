@@ -349,14 +349,15 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action ="" method ="POST" enctype="multipart/form-data">
+                            <form action ="{{ url('admin/category/store') }}" method ="POST" enctype="multipart/form-data">
+                                @csrf
                                 <h6 class="heading-small text-muted mb-4">Category Information</h6>
                                 <div class="pl-lg-4">
                                     <div class="row">
                                         <div class="col-lg-10">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="input-username">Category Name</label>
-                                                <input type="text" name="cat_name" class="form-control" placeholder="Category Name">
+                                                <input type="text" name="category_name" class="form-control" placeholder="Category Name">
                                             </div>
                                         </div>
                                     </div>                                    
@@ -365,7 +366,7 @@
                                     <div class="row">
                                         <div class="col-lg-10 mt-6">
                                             <div class="d-flex mt-3 justify-content-end">
-                                                <a href="index.php" class="btn btn-secondary">Back</a>
+                                                <a href="{{ url('admin/categories') }}" class="btn btn-secondary">Back</a>
                                                 <button type="submit" class="btn btn-success">Add Category</button>
                                             </div> 
                                         </div>

@@ -22,6 +22,13 @@ class CategoryController extends Controller
         return view('admin.categories.add');
     }
 
+    public function store(Request $request){
+        $category = new Categories();
+        $category->name = $request->category_name;
+        $category->save();
+        return back()->with(['message' => 'Post added successfully!']);
+    }
+
     public function update(Request $request, $id){
         $category = Categories::find($id);
         $category->name = $request->category_name;
