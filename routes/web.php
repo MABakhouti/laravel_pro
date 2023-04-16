@@ -27,6 +27,8 @@ Route::get('/post/categories/{categories_id}', [PostController::class, 'showByCa
 
 Route::get('/post/markAsFeatured/{post_id}', [PostController::class, 'markAsFeatured']);
 
+Route::get('/admin/dashboard', [PostController::class, 'dashboard']);
+
 Route::post('/comment/store', [CommentController::class, 'store']);
 Route::post('/comment/reply/add/', [ReplyController::class, 'addReply']);
 

@@ -12,13 +12,13 @@
                 <!-- Nav items -->
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="">
+                        <a class="nav-link active" href="{{ url('admin/dashboard') }}">
                             <i class="ni ni-tv-2 text-primary"></i>
                             <span class="nav-link-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../posts/">
+                        <a class="nav-link" href="{{ url('admin/post') }}">
                             <i class="ni ni-bullet-list-67 text-default"></i>
                             <span class="nav-link-text">Posts</span>
                         </a>
@@ -47,4 +47,4 @@
             </div>
         </div>
     </div>
-</nav> 
+</nav>

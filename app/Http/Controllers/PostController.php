@@ -20,6 +20,10 @@ class PostController extends Controller
         return view('index', compact('posts', 'categories', 'featured_posts'));
     }
 
+    public function dashboard(){
+        return view('admin.dashboard');
+    }
+
     public function show($id){
         $post = Post::find($id);
         $categories = Categories::all();
