@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
+use App\Models\Comment;
+use App\Models\Reply;
 use Illuminate\Support\Facades\File;
 use App\Models\Categories;
 
@@ -21,7 +24,22 @@ class PostController extends Controller
     }
 
     public function dashboard(){
-        return view('admin.dashboard');
+        $num_of_posts = count(Post::all());
+        $num_of_comments = count(Comment::all());
+        $num_of_replies = count(Reply::all());
+        $num_of_categories = count(Categories::all());
+
+        $where = "where created_at < NOW() - INTERVAL 1 WEEK";
+        $query = "SELECT
+            (SELECT count(id) from posts $where) as total_posts_week_ago,
+            (SELECT count(id) from categories $where) as total_categories_week_ago,
+            (SELECT count(id) from comments $where) as total_comments_week_ago,
+            (SELECT count(id) from replies $where) as total_replies_week_ago
+        ";
+        $totals_weeks_ago = DB::select( $query );
+        // dd($total_weeks_ago);
+
+        return view('admin.dashboard', compact('num_of_posts', 'num_of_comments', 'num_of_replies', 'num_of_categories', 'totals_weeks_ago'));
     }
 
     public function show($id){

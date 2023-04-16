@@ -74,8 +74,8 @@
                             </nav>
                         </div>
                         <div class="col-lg-6 col-5 text-right">
-                            <a href="add.php" class="btn btn-sm btn-neutral">Add New Post</a>
-                            <a href="../categories/add.php" class="btn btn-sm btn-neutral">Add New Category</a>
+                            <a href="{{ url('admin/post/add') }}" class="btn btn-sm btn-neutral">Add New Post</a>
+                            <a href="{{ url('admin/category/add') }}" class="btn btn-sm btn-neutral">Add New Category</a>
                         </div>
                     </div>
                     <!-- Card stats -->
@@ -87,7 +87,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <h5 class="card-title text-uppercase text-muted mb-0">Total Posts</h5>
-                                            <span class="h2 font-weight-bold mb-0">33</span>
+                                            <span class="h2 font-weight-bold mb-0">{{ $num_of_posts }}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div
@@ -97,8 +97,11 @@
                                         </div>
                                     </div>
                                     <p class="mt-3 mb-0 text-sm">
-
-                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> </span>
+                                        <?php
+                                            $total_posts_week_ago = $totals_weeks_ago[0]->total_posts_week_ago;
+                                            $up_by = ($total_posts_week_ago/100)*$num_of_posts
+                                        ?>
+                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{$up_by}}%</span>
                                         <span class="text-nowrap">Since last week</span>
                                     </p>
                                 </div>
@@ -112,7 +115,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <h5 class="card-title text-uppercase text-muted mb-0">Total Comments</h5>
-                                            <span class="h2 font-weight-bold mb-0"></span>
+                                            <span class="h2 font-weight-bold mb-0">{{ $num_of_comments }}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div
@@ -122,7 +125,11 @@
                                         </div>
                                     </div>
                                     <p class="mt-3 mb-0 text-sm">
-                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i></span>
+                                        <?php
+                                            $total_comments_week_ago = $totals_weeks_ago[0]->total_comments_week_ago;
+                                            $up_by = ($total_comments_week_ago/100)*$num_of_comments
+                                        ?>
+                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{$up_by}}%</span>
                                         <span class="text-nowrap">Since last week</span>
                                     </p>
                                 </div>
@@ -135,7 +142,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <h5 class="card-title text-uppercase text-muted mb-0">Total Replies</h5>
-                                            <span class="h2 font-weight-bold mb-0">924</span>
+                                            <span class="h2 font-weight-bold mb-0">{{ $num_of_replies }}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div
@@ -145,7 +152,11 @@
                                         </div>
                                     </div>
                                     <p class="mt-3 mb-0 text-sm">
-                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                                        <?php
+                                            $total_replies_week_ago = $totals_weeks_ago[0]->total_replies_week_ago;
+                                            $up_by = ($total_replies_week_ago/100)*$num_of_replies
+                                        ?>
+                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{$up_by}}%</span>
                                         <span class="text-nowrap">Since last week</span>
                                     </p>
                                 </div>
@@ -158,7 +169,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <h5 class="card-title text-uppercase text-muted mb-0">Total Categories</h5>
-                                            <span class="h2 font-weight-bold mb-0"></span>
+                                            <span class="h2 font-weight-bold mb-0">{{ $num_of_categories }}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div
@@ -168,7 +179,11 @@
                                         </div>
                                     </div>
                                     <p class="mt-3 mb-0 text-sm">
-                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> </span>
+                                        <?php
+                                            $total_categories_week_ago = $totals_weeks_ago[0]->total_categories_week_ago;
+                                            $up_by = ($total_categories_week_ago/100)*$num_of_categories
+                                        ?>
+                                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{$up_by}}%</span>
                                         <span class="text-nowrap">Since last week</span>
                                     </p>
                                 </div>
